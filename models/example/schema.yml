@@ -1,21 +1,63 @@
-
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: "Ham Verilerin Bulunduğu Yer"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
+    tables:
+      - name: product
+        identifier: raw_gz_product
+        description: "Ürün kimliği ve fiyat bilgisi"
+        columns: 
+          - name: products_id
+            description: "Ürünün benzersiz kimliği"
             tests:
-                - unique
-                - not_null
+              - unique  
+              - not_null
+          - name: purchSE_PRICE
+            description: "Ürünün fiyatı"
+            tests: 
+              - not_null
+
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Satış bilgileri"
+        columns:
+          - name: orders_id
+            description: "Satışların benzersiz kimliği"
+            tests:
+              - not_null
+          - name: pdt_id
+            description: "Ürün kimliği"
+            tests:
+              - not_null
+          - name: revenue
+            description: "Ciro"
+            tests:
+              - not_null
+          - name: quantity
+            description: "Satılan Ürün Adeti"
+            tests:
+              - not_null
+          - name: date_date
+            description: "Sipariş tarihi"
+            tests:
+              - not_null
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Teslimat bilgileri"
+        columns:
+          - name: orders_id
+            description: "Sipariş kimliği"
+            tests:
+              - not_null
+          - name: shipping_fee
+            description: "Nakliye ücreti"
+            tests:
+              - not_null
+          - name: logCost
+            description: "Operasyon Maliyeti"
+            tests:
+              - not_null
