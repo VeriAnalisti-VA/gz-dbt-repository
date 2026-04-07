@@ -57,7 +57,15 @@ sources:
             description: "Nakliye ücreti"
             tests:
               - not_null
+          - name: shipping_fee_1
+            description: "Nakliye ücreti"
+            tests:
+              - not_null
           - name: logCost
             description: "Operasyon Maliyeti"
+            tests:
+              - not_null
+          - name: ship_cost
+            description: "Nakliye Maliyeti"
             tests:
               - not_null
