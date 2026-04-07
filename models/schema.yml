@@ -3,69 +3,64 @@ version: 2
 sources:
   - name: raw
     schema: gz_raw_data
-    description: "Ham Verilerin Bulunduğu Yer"
-
+    description: "Ham verilerin bulunduğu ana kaynak"
     tables:
       - name: product
         identifier: raw_gz_product
-        description: "Ürün kimliği ve fiyat bilgisi"
+        description: "Greenweez ürün listesi"
         columns: 
           - name: products_id
-            description: "Ürünün benzersiz kimliği"
+            description: "Birincil anahtar (Ürünün benzersiz kimliği)"
             tests:
-              - unique  
+              - unique
               - not_null
           - name: purchSE_PRICE
-            description: "Ürünün fiyatı"
+            description: "Ürünün satın alma fiyatı (maliyet)"
             tests: 
               - not_null
 
       - name: sales
         identifier: raw_gz_sales
-        description: "Satış bilgileri"
+        description: "Greenweez satış verileri / Her siparişteki her ürün için bir satır bulunur"
         columns:
           - name: orders_id
-            description: "Satışların benzersiz kimliği"
+            description: "Sipariş kimliği (Teslimat tablosuyla bağlantı kurar)"
             tests:
               - not_null
           - name: pdt_id
-            description: "Ürün kimliği"
+            description: "Ürün kimliği (Ürün tablosuyla bağlantı kurar)"
             tests:
               - not_null
           - name: revenue
-            description: "Ciro"
+            description: "Müşterinin ödediği tutar. Ciro = Miktar * Satış Fiyatı"
             tests:
               - not_null
           - name: quantity
-            description: "Satılan Ürün Adeti"
+            description: "Verilen siparişte satın alınan ürün adedi"
             tests:
               - not_null
           - name: date_date
-            description: "Sipariş tarihi"
+            description: "Satın alma tarihi"
             tests:
               - not_null
 
       - name: ship
         identifier: raw_gz_ship
-        description: "Teslimat bilgileri"
+        description: "Greenweez siparişlerine ait nakliye ve teslimat verileri"
         columns:
           - name: orders_id
-            description: "Sipariş kimliği"
+            description: "Birincil anahtar (Sipariş kimliği)"
             tests:
               - not_null
           - name: shipping_fee
-            description: "Nakliye ücreti"
-            tests:
-              - not_null
-          - name: shipping_fee_1
-            description: "Nakliye ücreti"
+            description: "Müşterinin nakliye için ödediği ücret"
             tests:
               - not_null
           - name: logCost
-            description: "Operasyon Maliyeti"
+            description: "Dağıtım merkezinde/depoda paketin hazırlanma maliyeti"
             tests:
               - not_null
           - name: ship_cost
-            description: "Nakliye Maliyeti"
+            description: "Greenweez'in lojistik firmasına ödediği nakliye maliyeti"
             tests:
               - not_null
