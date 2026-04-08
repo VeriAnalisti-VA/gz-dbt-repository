@@ -3,6 +3,7 @@ SELECT
     s.orders_id,
     MAX(s.date_date) AS date_date,
     ROUND(SUM(s.revenue),2) AS total_revenue,
+    SUM(s.quantity) AS total_quantity, -- BU SATIRI EKLEDİK
     ROUND(SUM(s.quantity * p.purchase_price),2) AS total_cost_of_goods,
     ROUND(SUM(sh.logcost),2) AS total_log_cost,
     ROUND(SUM(sh.ship_cost),2) AS total_ship_cost,
