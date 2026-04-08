@@ -1,5 +1,7 @@
 SELECT
     s.products_id,
+    s.orders_id,
+    MAX(s.date_date) AS date_date,
     ROUND(SUM(s.revenue),2) AS total_revenue,
     ROUND(SUM(s.quantity * p.purchase_price),2) AS total_cost_of_goods,
     ROUND(SUM(sh.logcost),2) AS total_log_cost,
@@ -11,5 +13,5 @@ LEFT JOIN {{ ref('stg_raw__product') }} AS p
     ON s.products_id = p.products_id
 LEFT JOIN {{ ref('stg_raw__ship') }} AS sh 
     ON s.orders_id = sh.orders_id
-GROUP BY 1
+GROUP BY 1,2
 ORDER BY total_margin DESC
