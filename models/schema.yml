@@ -23,6 +23,13 @@ sources:
         identifier: raw_gz_sales
         description: "Greenweez satış verileri / Her siparişteki her ürün için bir satır bulunur"
         columns:
+          - name: date_date
+            description: "Satın Alma Tarihi"
+          - name: orders_id || '-' || pdt_id
+            description: "Birincil Anahtar"
+            tests:
+              - not_null
+              - unique
           - name: orders_id
             description: "Sipariş kimliği (Teslimat tablosuyla bağlantı kurar)"
             tests:
@@ -51,6 +58,7 @@ sources:
           - name: orders_id
             description: "Birincil anahtar (Sipariş kimliği)"
             tests:
+              - unique
               - not_null
           - name: shipping_fee
             description: "Müşterinin nakliye için ödediği ücret"
