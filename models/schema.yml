@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: "Ham verilerin bulunduğu ana kaynak"
+    tables:
+      - name: product
+        identifier: raw_gz_product
+        description: "Greenweez ürün listesi"
+        columns: 
+          - name: products_id
+            description: "Birincil anahtar (Ürünün benzersiz kimliği)"
+            tests:
+              - unique
+              - not_null
+          - name: purchSE_PRICE
+            description: "Ürünün satın alma fiyatı (maliyet)"
+            tests: 
+              - not_null
+
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Greenweez satış verileri / Her siparişteki her ürün için bir satır bulunur"
+        columns:
+          - name: date_date
+            description: "Satın Alma Tarihi"
+          - name: orders_id || '-' || pdt_id
+            description: "Birincil Anahtar"
+            tests:
+              - not_null
+              - unique
+          - name: orders_id
+            description: "Sipariş kimliği (Teslimat tablosuyla bağlantı kurar)"
+            tests:
+              - not_null
+          - name: pdt_id
+            description: "Ürün kimliği (Ürün tablosuyla bağlantı kurar)"
+            tests:
+              - not_null
+          - name: revenue
+            description: "Müşterinin ödediği tutar. Ciro = Miktar * Satış Fiyatı"
+            tests:
+              - not_null
+          - name: quantity
+            description: "Verilen siparişte satın alınan ürün adedi"
+            tests:
+              - not_null
+          - name: date_date
+            description: "Satın alma tarihi"
+            tests:
+              - not_null
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Greenweez siparişlerine ait nakliye ve teslimat verileri"
+        columns:
+          - name: orders_id
+            description: "Birincil anahtar (Sipariş kimliği)"
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: "Müşterinin nakliye için ödediği ücret"
+            tests:
+              - not_null
+          - name: logCost
+            description: "Dağıtım merkezinde/depoda paketin hazırlanma maliyeti"
+            tests:
+              - not_null
+          - name: ship_cost
+            description: "Greenweez'in lojistik firmasına ödediği nakliye maliyeti"
+            tests:
+              - not_null
