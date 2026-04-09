@@ -72,3 +72,141 @@ sources:
             description: "Greenweez'in lojistik firmasına ödediği nakliye maliyeti"
             tests:
               - not_null
+      
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: "Google ADS kampanya performans verileri"
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - date_date
+                  - campaign_key
+                  - camPGN_name
+        columns:
+          - name: date_date
+            description: "Kampanya Tarihi"
+            tests:
+              - not_null
+          - name: paid_source
+            description: "Reklam Kaynağı"
+            tests:
+              - not_null
+          - name: campaign_key
+            description: "Kampanya Kodu"
+            tests:
+              - not_null
+          - name: camPGN_name
+            description: "Kampanya Adı"
+            tests:
+              - not_null
+          - name: ads_cost
+            description: "Reklam Maliyeti"
+          - name: impression
+            description: "Reklam Gösterim Sayısı"
+          - name: click
+            description: "Reklam Tıklanma Sayısı"
+
+      - name: bing
+        identifier: raw_gz_bing
+        description: "BİNG kampanya performans verileri"
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - date_date
+                  - campaign_key
+                  - camPGN_name
+        columns:
+          - name: date_date
+            description: "Kampanya Tarihi"
+            tests:
+              - not_null
+          - name: paid_source
+            description: "Reklam Kaynağı"
+            tests:
+              - not_null
+          - name: campaign_key
+            description: "Kampanya Kodu"
+            tests:
+              - not_null
+          - name: camPGN_name
+            description: "Kampanya Adı"
+            tests:
+              - not_null
+          - name: ads_cost
+            description: "Reklam Maliyeti"
+          - name: impression
+            description: "Reklam Gösterim Sayısı"
+          - name: click
+            description: "Reklam Tıklanma Sayısı"
+
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: "CRİTEO kampanya performans verileri"
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - date_date
+                  - campaign_key
+                  - camPGN_name
+        columns:
+          - name: date_date
+            description: "Kampanya Tarihi"
+            tests:
+              - not_null
+          - name: paid_source
+            description: "Reklam Kaynağı"
+            tests:
+              - not_null
+          - name: campaign_key
+            description: "Kampanya Kodu"
+            tests:
+              - not_null
+          - name: camPGN_name
+            description: "Kampanya Adı"
+            tests:
+              - not_null
+          - name: ads_cost
+            description: "Reklam Maliyeti"
+          - name: impression
+            description: "Reklam Gösterim Sayısı"
+          - name: click
+            description: "Reklam Tıklanma Sayısı"
+
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: "FACEBOOK kampanya performans verileri"
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - date_date
+                  - campaign_key
+                  - camPGN_name
+        columns:
+          - name: date_date
+            description: "Kampanya Tarihi"
+            tests:
+              - not_null
+          - name: paid_source
+            description: "Reklam Kaynağı"
+            tests:
+              - not_null
+          - name: campaign_key
+            description: "Kampanya Kodu"
+            tests:
+              - not_null
+          - name: camPGN_name
+            description: "Kampanya Adı"
+            tests:
+              - not_null
+          - name: ads_cost
+            description: "Reklam Maliyeti"
+          - name: impression
+            description: "Reklam Gösterim Sayısı"
+          - name: click
+            description: "Reklam Tıklanma Sayısı"
+
+      
