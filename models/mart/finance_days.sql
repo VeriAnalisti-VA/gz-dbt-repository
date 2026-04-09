@@ -1,4 +1,4 @@
- {{ config(materialized=table) }}
+ {{ config(materialized='table') }}
 SELECT
     date_date AS tarih,
     COUNT(DISTINCT orders_id) AS toplam_islem_sayisi,
