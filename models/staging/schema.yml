@@ -209,6 +209,11 @@ sources:
           - name: click
             description: "Reklam Tıklanma Sayısı"
 
+models:
+  - name: dbt_FOE
+    schema: dbt_FOE
+    description: "Staging verilerin bulunduğu ana kaynak"
+    tables:
       - name: campaigns
         identifier: int_campaigns
         description: "Tüm kampanya performans verileriE"
@@ -248,4 +253,39 @@ sources:
             description: "Reklam Tıklanma Sayısı"
             tests:
               - not_null
+
+      - name: campaigns_day
+        identifier: int_campaigns_day
+        description: "Günlük Kampanya performans verileri"
+        columns:
+          - name: date_date
+            description: "Kampanya Tarihi"
+            tests:
+              - not_null
+          - name: ads_cost
+            description: "Reklam Maliyeti"
+            tests:
+              - not_null
+          - name: impression
+            description: "Reklam Gösterim Sayısı"
+            tests:
+              - not_null
+          - name: click
+            description: "Reklam Tıklanma Sayısı"
+            tests:
+              - not_null
+
+      - name: finance_campaigns_day
+        description: "Global kpi"
+        columns:
+          - name: ads_margin
+            description: "operational_margin - ads_cost"
+            tests:
+              - not_null
+          - name: verage_basket
+            description: "her gün için ortalama sepet tutarı"
+            tests:
+              - not_null
+
+
 
